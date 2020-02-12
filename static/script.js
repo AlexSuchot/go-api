@@ -1,6 +1,8 @@
 document.getElementById("sub-form").addEventListener("submit", e => subscribe(e));
 document.getElementById("login-form").addEventListener("submit", e => login(e));
+
 var paragraph = document.getElementById("login-tooltip");
+
 paragraph.textContent = "";
 
 function displayRegister() {
@@ -11,6 +13,11 @@ function displayRegister() {
 function displayLogin() {
     document.getElementById("sub-form").style.display = 'none';
     document.getElementById("login-form").style.display = 'block';
+}
+
+function displayChat() {
+    document.getElementById("login-form").style.display = 'none';
+    document.getElementById("chat").style.display = 'block';
 }
 
 function login(e) {
@@ -36,6 +43,8 @@ function login(e) {
 
             if (res.status === 200) {
                 paragraph.textContent = "Succesfully logged in !";
+                displayChat();
+
             } else {
                 paragraph.textContent = "Wrong password or username";
             }
@@ -80,17 +89,29 @@ function subscribe(e) {
 }
 
 let socket = new WebSocket("http://localhost:1337/ws");
+socket.onopen = function(event) {
+    socket.send("WebSocket Server open !");
+};
+
 socket.onmessage = (msg) => {
     var response = JSON.parse(msg.data);
     var message = document.querySelector('.message');
     message.textContent(response);
+    sendMessage();
 };
 
-function sendMessage(e) {
+function sendMessage() {
+    var message = {
+        type: "message",
+        text: document.getElementById("text").value,
+        date: Date.now()
+    };
+
+    socket.send(JSON.stringify(message));
+
+    document.getElementById("text").value = "";
 }
 
 function getMessage(e) {
 
 }
-
-

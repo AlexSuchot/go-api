@@ -86,7 +86,7 @@ func main() {
 					session.Save(r, w)
 					fmt.Fprintf(w, "Connected")
 
-					createToken(user, float32(2000))
+					//createToken(user, float32(2000))
 
 				} else {
 					http.Error(w, "Wrong Username or password", http.StatusBadRequest)
@@ -121,19 +121,14 @@ func main() {
 					var clearPassword = []byte(user.Password)
 					var hashPassword = hashAndSalt(clearPassword)
 
-					if UserExist(user) == true {
-						fmt.Printf("User already exist")
-						http.Error(w, "User already exist", http.StatusUnprocessableEntity)
-					} else {
-						// Prepare Query :
-						insert, err := db.Query("INSERT INTO users (username, password, email) VALUES(?, ?, ?)", user.Username, hashPassword, user.Email) // ? = placeholder
-						fmt.Fprintf(w, "User successfully created")
-						http.Error(w, "User successfully created", http.StatusOK)
-						if err != nil {
-							panic(err.Error()) // proper error handling instead of panic in your app
-						}
-						defer insert.Close() // Close the statement when we leave main() / the program terminates
+					// Prepare Query :
+					insert, err := db.Query("INSERT INTO users (username, password, email) VALUES(?, ?, ?)", user.Username, hashPassword, user.Email) // ? = placeholder
+					fmt.Fprintf(w, "User successfully created")
+					http.Error(w, "User successfully created", http.StatusOK)
+					if err != nil {
+						panic(err.Error()) // proper error handling instead of panic in your app
 					}
+					defer insert.Close() // Close the statement when we leave main() / the program terminates
 				}
 			}
 		}

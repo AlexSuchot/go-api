@@ -10,29 +10,27 @@
         <button class="display-registration-form" onclick="displayRegister()">S'enregistrer</button>
         <button class="display-subscribe-form" onclick="displayLogin()">Se connecter</button>
     </div>
-    <div id="sub-form" class="form-container">
-        <h2>Inscription</h2>
-        <form>
-            <p>Nom d'utilisateur:</p><input id="username" type="text" name="username" placeholder="nom d'utilisateur">
-            <p>Mot de passe:</p><input id="password" type="password" name="password" placeholder="mot de passe">
-            <p>Adresse mail:</p><input id="email" type="email" name="email" placeholder="adresse mail">
-            <button type="submit" id ="subscribe-btn">Valider l'inscription</button>
-            <p id="sub-tooltip"></p>
-        </form>
-    </div>
+    <div class="flex-container">
+        <div id="sub-form" class="form-container">
+            <h2>Inscription</h2>
+            <form>
+                <p>Nom d'utilisateur:</p><input id="username" type="text" name="username" placeholder="nom d'utilisateur">
+                <p>Mot de passe:</p><input id="password" type="password" name="password" placeholder="mot de passe">
+                <p>Adresse mail:</p><input id="email" type="email" name="email" placeholder="adresse mail">
+                <button type="submit" id ="subscribe-btn">Valider l'inscription</button>
+                <p id="sub-tooltip"></p>
+            </form>
+        </div>
 
-    <div id="login-form" class="form-container">
-        <h2>Connexion</h2>
-        <form>
-            <p>Nom d'utilisateur:</p><input id="username-login" type="text" name="username" placeholder="nom d'utilisateur">
-            <p>Mot de passe:</p><input id="password-login" type="password" name="password" placeholder="mot de passe">
-            <button type="submit" id ="login-btn">Se connecter</button>
-            <p id="login-tooltip"></p>
-        </form>
-    </div>
-
-    <div>
-
+        <div id="login-form" class="form-container">
+            <h2>Connexion</h2>
+            <form>
+                <p>Nom d'utilisateur:</p><input id="username-login" type="text" name="username" placeholder="nom d'utilisateur">
+                <p>Mot de passe:</p><input id="password-login" type="password" name="password" placeholder="mot de passe">
+                <button type="submit" id ="login-btn">Se connecter</button>
+                <p id="login-tooltip"></p>
+            </form>
+        </div>
     </div>
 </body>
 
